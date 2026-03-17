@@ -1,290 +1,850 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+
+!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FinSpots - Inteligência Financeira</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinSpots — Diagnóstico Financeiro para E-commerce</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #FF5F00;
+    --white: #FFFFFF;
+    --navy: #020B3B;
+    --dark: #00051A;
+    --orange-dim: rgba(255,95,0,0.10);
+    --orange-border: rgba(255,95,0,0.28);
+  }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
 
-  <style>
-    :root {
-      --laranja: #FF5C00;
-      --azul: #050A30;
-      --branco: #FFFFFF;
-      --cinza: #D9D9D9;
-    }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--dark);
+    color: var(--white);
+    overflow-x: hidden;
+  }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0,5,26,0.9);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,95,0,0.12);
+  }
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--azul);
-      color: var(--branco);
-      line-height: 1.6;
-    }
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .logo span { color: var(--orange); }
 
-    h1, h2, h3 {
-      font-family: 'Syne', sans-serif;
-    }
+  .nav-cta {
+    background: var(--orange);
+    color: var(--white);
+    font-family: 'poppins', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 10px 22px;
+    border-radius: 6px;
+    text-decoration: none;
+    letter-spacing: 0.2px;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
 
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 20px;
-    }
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 
-    /* HERO */
-    .hero {
-      text-align: center;
-      padding: 80px 20px;
-    }
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 130px 48px 90px;
+    position: relative;
+    overflow: hidden;
+  }
 
-    .hero h1 {
-      font-size: 42px;
-      margin-bottom: 20px;
-    }
+  .hero-glow {
+    position: absolute;
+    top: -180px; right: -180px;
+    width: 640px; height: 640px;
+    background: radial-gradient(circle, rgba(255,95,0,0.16) 0%, transparent 68%);
+    pointer-events: none;
+  }
 
-    .hero p {
-      font-size: 20px;
-      color: var(--cinza);
-      margin-bottom: 30px;
-    }
+  .hero-eyebrow {
+    font-family: 'poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 26px;
+    animation: fadeUp 0.5s ease both 0.1s;
+  }
 
-    .btn {
-      background: var(--laranja);
-      color: white;
-      padding: 15px 30px;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-      text-decoration: none;
-      display: inline-block;
-      margin: 5px;
-    }
+  .hero h1 {
+    font-family: 'poppins', sans-serif;
+    font-size: clamp(44px, 7.5vw, 92px);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -2.5px;
+    max-width: 820px;
+    animation: fadeUp 0.5s ease both 0.22s;
+  }
 
-    .btn:hover {
-      opacity: 0.85;
-    }
+  .hero h1 em { font-style: normal; color: var(--orange); }
 
-    .sub-info {
-      margin-top: 20px;
-      font-size: 14px;
-      color: var(--cinza);
-    }
+  .hero-sub {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.58);
+    max-width: 500px;
+    line-height: 1.75;
+    margin-top: 26px;
+    animation: fadeUp 0.5s ease both 0.36s;
+  }
 
-    /* SECTION */
-    section {
-      padding: 60px 0;
-    }
+  .hero-stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 38px;
+    padding: 16px 24px;
+    background: var(--orange-dim);
+    border: 1px solid var(--orange-border);
+    border-radius: 10px;
+    animation: fadeUp 0.5s ease both 0.50s;
+  }
 
-    .section-title {
-      font-size: 32px;
-      margin-bottom: 20px;
-    }
+  .hero-stat strong {
+    font-family: 'poppins', sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--orange);
+    line-height: 1;
+  }
 
-    .grid {
-      display: grid;
-      gap: 20px;
-    }
+  .hero-stat p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.45;
+    max-width: 180px;
+  }
 
-    .grid-2 {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    }
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 42px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.5s ease both 0.64s;
+  }
 
-    /* CARDS */
-    .card {
-      background: #0b0f3a;
-      padding: 25px;
-      border-radius: 12px;
-    }
+  .btn-primary {
+    background: var(--orange);
+    color: var(--white);
+    font-family: 'poppins', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 17px 38px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px rgba(255,95,0,0.38);
+  }
 
-    /* PLANOS */
-    .plans {
-      display: grid;
-      gap: 20px;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
+  .btn-ghost {
+    color: rgba(255,255,255,0.48);
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--white); }
 
-    .plan {
-      background: #0b0f3a;
-      padding: 25px;
-      border-radius: 12px;
-      border: 1px solid transparent;
-    }
+  .hero-badges {
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.5s ease both 0.78s;
+  }
 
-    .plan.highlight {
-      border: 1px solid var(--laranja);
-    }
+  .badge {
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.42);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 6px 14px;
+    border-radius: 100px;
+  }
 
-    .price {
-      font-size: 24px;
-      margin: 10px 0;
-      color: var(--laranja);
-    }
+  /* ── SECTIONS ── */
+  .section {
+    padding: 100px 48px;
+    max-width: 1120px;
+    margin: 0 auto;
+  }
 
-    /* FOOTER CTA */
-    .cta {
-      text-align: center;
-      padding: 80px 20px;
-      background: #0b0f3a;
-    }
+  .section-full {
+    padding: 100px 48px;
+  }
 
-  </style>
+  .section-full .section-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'poppins', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 18px;
+  }
+
+  h2 {
+    font-family: 'poppins', sans-serif;
+    font-size: clamp(28px, 4vw, 46px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.08;
+    margin-bottom: 18px;
+  }
+  h2 em { font-style: normal; color: var(--orange); }
+
+  .lead {
+    font-size: 17px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.58);
+    line-height: 1.75;
+    max-width: 580px;
+    margin-bottom: 48px;
+  }
+
+  /* ── PROBLEM CARDS ── */
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .problem-card {
+    background: rgba(2,11,59,0.55);
+    padding: 30px 26px;
+    transition: background 0.25s;
+  }
+  .problem-card:hover { background: rgba(2,11,59,0.85); }
+
+  .p-icon {
+    width: 38px; height: 38px;
+    background: var(--orange-dim);
+    border: 1px solid var(--orange-border);
+    border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px;
+    margin-bottom: 16px;
+  }
+
+  .problem-card h3 {
+    font-family: 'poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 9px;
+  }
+
+  .problem-card p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.48);
+    line-height: 1.65;
+  }
+
+  /* ── SYMPTOMS ── */
+  .symptoms-section {
+    background: var(--navy);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .symptoms-box {
+    background: rgba(0,5,26,0.5);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 52px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .symptoms-box::after {
+    content: '';
+    position: absolute;
+    bottom: -120px; right: -120px;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(255,95,0,0.09) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .symptoms-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 36px;
+  }
+
+  .symptom {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px 20px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    transition: border-color 0.2s;
+  }
+  .symptom:hover { border-color: rgba(255,95,0,0.28); }
+
+  .s-dot {
+    width: 8px; height: 8px;
+    background: var(--orange);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  .symptom p { font-size: 14px; line-height: 1.55; color: rgba(255,255,255,0.78); }
+
+  .symptoms-callout {
+    margin-top: 38px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .symptoms-callout strong {
+    font-family: 'poppins', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .symptoms-callout p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.65;
+    max-width: 520px;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .steps {
+    margin-top: 52px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute;
+    left: 23px; top: 48px; bottom: 48px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--orange) 0%, rgba(255,95,0,0.1) 100%);
+  }
+
+  .step {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    padding: 30px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .step:last-child { border-bottom: none; }
+
+  .step-num {
+    width: 48px; height: 48px;
+    background: var(--orange);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-body h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 7px;
+    padding-top: 10px;
+  }
+
+  .step-body p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.52);
+    line-height: 1.65;
+    max-width: 520px;
+  }
+
+  .steps-result {
+    margin-top: 32px;
+    padding: 22px 28px;
+    background: var(--orange);
+    border-radius: 10px;
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  /* ── OFFER ── */
+  .offer-section {
+    background: var(--navy);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .offer-grid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 70px;
+    align-items: center;
+  }
+
+  .offer-list {
+    list-style: none;
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .offer-list li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 15px;
+    color: rgba(255,255,255,0.82);
+  }
+
+  .check {
+    width: 22px; height: 22px;
+    background: var(--orange-dim);
+    border: 1px solid var(--orange);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 11px;
+    color: var(--orange);
+    font-weight: 700;
+  }
+
+  .price-card {
+    background: var(--dark);
+    border: 1px solid var(--orange-border);
+    border-radius: 18px;
+    padding: 46px 38px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .price-card::before {
+    content: '';
+    position: absolute;
+    top: -80px; left: 50%; transform: translateX(-50%);
+    width: 240px; height: 240px;
+    background: radial-gradient(circle, rgba(255,95,0,0.18) 0%, transparent 68%);
+    pointer-events: none;
+  }
+
+  .price-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.38);
+    margin-bottom: 18px;
+  }
+
+  .price-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 64px;
+    font-weight: 800;
+    letter-spacing: -3px;
+    line-height: 1;
+    color: var(--white);
+  }
+
+  .price-value sup {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--orange);
+    vertical-align: super;
+    letter-spacing: 0;
+  }
+
+  .price-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    margin-top: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .price-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.07);
+    margin: 28px 0;
+  }
+
+  .price-badges {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+
+  .p-badge {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 5px 13px;
+    border: 1px solid rgba(255,95,0,0.3);
+    border-radius: 100px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .price-cta {
+    display: block;
+    background: var(--orange);
+    color: var(--white);
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 17px;
+    border-radius: 9px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 14px;
+  }
+  .price-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px rgba(255,95,0,0.36);
+  }
+
+  .price-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.32);
+  }
+
+  /* ── CLOSING ── */
+  .closing {
+    text-align: center;
+    padding: 120px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .closing::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 700px; height: 500px;
+    background: radial-gradient(ellipse, rgba(255,95,0,0.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .closing h2 {
+    font-size: clamp(34px, 5vw, 60px);
+    letter-spacing: -1.5px;
+    max-width: 620px;
+    margin: 0 auto 16px;
+  }
+
+  .closing p {
+    font-size: 17px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.52);
+    margin-bottom: 42px;
+  }
+
+  .closing-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .closing-note {
+    font-size: 13px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 30px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+
+  footer .logo { font-size: 18px; }
+
+  footer p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.28);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 800px) {
+    nav { padding: 16px 24px; }
+    .hero { padding: 110px 24px 70px; }
+    .section, .section-full { padding: 70px 24px; }
+    .problem-grid { grid-template-columns: 1fr; }
+    .symptoms-grid { grid-template-columns: 1fr; }
+    .symptoms-box { padding: 32px 24px; }
+    .offer-grid { grid-template-columns: 1fr; }
+    .closing { padding: 80px 24px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; padding: 28px 24px; }
+    .steps::before { display: none; }
+  }
+</style>
 </head>
-
 <body>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <img src="logo.png" alt="FinSpots" style="width:180px;margin-bottom:20px">
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Fin<span>Spots</span></a>
+  <a href="#diagnostico" class="nav-cta">Quero o diagnóstico</a>
+</nav>
 
-      <h1>Você vende. Mas o dinheiro não sobra.</h1>
-      <p>E o pior: você não sabe exatamente por quê.</p>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <p class="hero-eyebrow">Diagnóstico Financeiro para E-commerce</p>
+  <h1>Você vende.<br>Mas o dinheiro<br><em>não sobra.</em></h1>
+  <p class="hero-sub">A maioria dos e-commerces fatura bem e perde dinheiro em silêncio, com taxas, frete, anúncios e falta de controle. Em até 7 dias você descobre o que está acontecendo.</p>
 
-      <a href="#planos" class="btn">Quero descobrir meu lucro real</a>
-      <a href="#planos" class="btn">Ver planos</a>
+  <div class="hero-stat">
+    <strong>68%</strong>
+    <p>dos e-commerces não sabem sua margem real</p>
+  </div>
 
-      <div class="sub-info">
-        68% das lojas não sabem sua margem real • A partir de R$ 497 • 100% online
+  <div class="hero-actions">
+    <a href="#diagnostico" class="btn-primary">Quero descobrir meu lucro real</a>
+    <a href="#como-funciona" class="btn-ghost">Ver como funciona ↓</a>
+  </div>
+
+  <div class="hero-badges">
+    <span class="badge">A partir de R$ 497</span>
+    <span class="badge">100% online</span>
+    <span class="badge">Resultado em até 7 dias</span>
+    <span class="badge">Sem planilha</span>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section class="section">
+  <p class="section-label">O Problema</p>
+  <h2>Não é falta de venda.<br>É falta de <em>clareza.</em></h2>
+  <p class="lead">Você pode vender todos os dias, girar estoque e investir em tráfego, e mesmo assim não ter lucro de verdade.</p>
+
+  <div class="problem-grid">
+    <div class="problem-card">
+      <div class="p-icon">💸</div>
+      <h3>Taxas invisíveis</h3>
+      <p>Marketplace, gateway, antifraude, logística reversa. Cada uma come um pedaço da sua margem sem aparecer claramente.</p>
+    </div>
+    <div class="problem-card">
+      <div class="p-icon">📦</div>
+      <h3>Frete corroendo lucro</h3>
+      <p>Frete grátis parece estratégia, mas sem calcular o impacto real na margem vira buraco de dinheiro.</p>
+    </div>
+    <div class="problem-card">
+      <div class="p-icon">📣</div>
+      <h3>Anúncios sem retorno</h3>
+      <p>Você investe em tráfego mas não sabe quais produtos realmente pagam o anúncio e quais só geram movimento.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SINTOMAS -->
+<div class="section-full symptoms-section">
+  <div class="section-inner">
+    <div class="symptoms-box">
+      <p class="section-label">Diagnóstico rápido</p>
+      <h2>Sua loja está vazando<br>dinheiro se você já <em>sentiu isso:</em></h2>
+
+      <div class="symptoms-grid">
+        <div class="symptom">
+          <div class="s-dot"></div>
+          <p>Você vende, mas o dinheiro nunca sobra</p>
+        </div>
+        <div class="symptom">
+          <div class="s-dot"></div>
+          <p>Não sabe se está lucrando ou só girando caixa</p>
+        </div>
+        <div class="symptom">
+          <div class="s-dot"></div>
+          <p>Quanto mais vende, mais confuso fica</p>
+        </div>
+        <div class="symptom">
+          <div class="s-dot"></div>
+          <p>Já pensou: "estou trabalhando para nada?"</p>
+        </div>
+        <div class="symptom">
+          <div class="s-dot"></div>
+          <p>Investe em anúncios sem saber o retorno real</p>
+        </div>
+        <div class="symptom">
+          <div class="s-dot"></div>
+          <p>Não sabe qual produto realmente dá lucro</p>
+        </div>
+      </div>
+
+      <div class="symptoms-callout">
+        <strong>Isso não é falta de esforço. É falta de clareza financeira.</strong>
+        <p>Você não aprendeu a olhar esses números quando começou. E ninguém te ensinou. Mas é exatamente isso que separa uma loja que cresce de uma que só gira dinheiro.</p>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- PROBLEMA -->
-  <section>
-    <div class="container">
-      <h2 class="section-title">O problema não é falta de venda.</h2>
-      <p>
-        É não saber o que acontece com o dinheiro depois que ele entra.
-      </p>
+<!-- COMO FUNCIONA -->
+<section class="section" id="como-funciona">
+  <p class="section-label">Como funciona</p>
+  <h2>Simples para você.<br><em>Profundo</em> na análise.</h2>
+  <p class="lead">Você não precisa entender de finanças. Só precisa das respostas certas.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-body">
+        <h3>Você envia os dados</h3>
+        <p>Rápido e sem complicação. Te oriento exatamente o que preciso — pode ser aproximado, sem precisar ter tudo organizado.</p>
+      </div>
     </div>
-  </section>
-
-  <!-- DORES -->
-  <section>
-    <div class="container grid grid-2">
-      <div class="card">Você vende mas o dinheiro nunca sobra</div>
-      <div class="card">Não sabe se está lucrando ou só girando caixa</div>
-      <div class="card">Investe em anúncios sem saber retorno</div>
-      <div class="card">Não sabe qual produto dá lucro</div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-body">
+        <h3>Nos analisamos tudo</h3>
+        <p>Faturamento, custos, produtos, canais, taxas e frete. Uma análise completa da sua operação, sem deixar nada de fora.</p>
+      </div>
     </div>
-  </section>
-
-  <!-- SOLUÇÃO -->
-  <section>
-    <div class="container">
-      <h2 class="section-title">A FinSpots resolve isso</h2>
-      <p>
-        Você descobre quanto realmente lucra, onde perde dinheiro e o que ajustar primeiro.
-      </p>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-body">
+        <h3>Você recebe o diagnóstico</h3>
+        <p>Claro, direto e sem linguagem técnica. Você entende cada número sem precisar de formação financeira.</p>
+      </div>
     </div>
-  </section>
-
-  <!-- COMO FUNCIONA -->
-  <section>
-    <div class="container grid grid-2">
-      <div class="card">Você envia os dados</div>
-      <div class="card">Analisamos tudo</div>
-      <div class="card">Você recebe diagnóstico claro</div>
-      <div class="card">Reunião estratégica</div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-body">
+        <h3>Nossa reunião estratégica</h3>
+        <p>Apresento os resultados e as ações prioritárias. Você sai sabendo exatamente o que precisa mudar primeiro.</p>
+      </div>
     </div>
-  </section>
+  </div>
 
-  <!-- BENEFÍCIOS -->
-  <section>
-    <div class="container">
-      <h2 class="section-title">O que você ganha</h2>
-      <p>
-        Clareza financeira, decisões seguras e controle real do seu negócio.
-      </p>
-    </div>
-  </section>
+  <div class="steps-result">
+    Resultado em até 7 dias. Você sai sabendo exatamente o que fazer.
+  </div>
+</section>
 
-  <!-- PLANOS -->
-  <section id="planos">
-    <div class="container">
-      <h2 class="section-title">Planos</h2>
+<!-- OFERTA -->
+<div class="section-full offer-section" id="diagnostico">
+  <div class="section-inner">
+    <div class="offer-grid">
+      <div>
+        <p class="section-label">A Proposta</p>
+        <h2>Diagnóstico<br><em>Financeiro</em></h2>
+        <p class="lead">Para quem quer entender o que está acontecendo com o dinheiro da sua loja.</p>
 
-      <div class="plans">
+        <ul class="offer-list">
+          <li><span class="check">✓</span> Diagnóstico completo da operação</li>
+          <li><span class="check">✓</span> Margem real bruta e líquida calculadas</li>
+          <li><span class="check">✓</span> Identificação detalhada de onde está perdendo</li>
+          <li><span class="check">✓</span> Quais produtos e canais dão mais retorno</li>
+          <li><span class="check">✓</span> 3 a 5 ações prioritárias para melhorar resultado</li>
+          <li><span class="check">✓</span> Reunião explicativa, sem linguagem técnica</li>
+        </ul>
+      </div>
 
-        <div class="plan">
-          <h3>Clareza</h3>
-          <p class="price">R$ 497</p>
-          <p>Diagnóstico completo e ações prioritárias</p>
-          <a class="btn">Quero o diagnóstico</a>
+      <div class="price-card">
+        <p class="price-label">Investimento único</p>
+        <div class="price-value"><sup>R$</sup>497</div>
+        <p class="price-sub">pagamento único</p>
+
+        <div class="price-divider"></div>
+
+        <div class="price-badges">
+          <span class="p-badge">100% online</span>
+          <span class="p-badge">Até 7 dias</span>
+          <span class="p-badge">Sem planilha</span>
         </div>
 
-        <div class="plan highlight">
-          <h3>Controle</h3>
-          <p class="price">R$ 1.197</p>
-          <p>Organização financeira completa</p>
-          <a class="btn">Quero organizar minha loja</a>
-        </div>
-
-        <div class="plan">
-          <h3>Escala</h3>
-          <p class="price">R$ 2.197</p>
-          <p>Lucratividade por produto + estratégia</p>
-          <a class="btn">Quero escalar com lucro</a>
-        </div>
-
-        <div class="plan">
-          <h3>Mensal</h3>
-          <p class="price">R$ 790/mês</p>
-          <p>Acompanhamento contínuo</p>
-          <a class="btn">Quero acompanhamento</a>
-        </div>
-
+        <a href="https://wa.me/5562996677168?text=Ol%C3%A1%2C+quero+o+diagn%C3%B3stico+financeiro" class="price-cta" target="_blank">
+          Quero o diagnóstico financeiro
+        </a>
+        <p class="price-note">100% Seguro · Resposta rápida</p>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- PROVA -->
-  <section>
-    <div class="container grid grid-2">
-      <div class="card">
-        “Achei que lucrava 40%. Era 11%. Dobrei o lucro.”
-      </div>
-      <div class="card">
-        “Evitei crise de caixa e não precisei de empréstimo.”
-      </div>
-    </div>
-  </section>
+<!-- FECHAMENTO -->
+<section class="closing">
+  <p class="section-label">Pronto para descobrir?</p>
+  <h2>Você não precisa<br>vender <em>mais.</em></h2>
+  <p>Precisa parar de perder dinheiro. Em até 7 dias você descobre quanto realmente lucra, onde está perdendo e o que fazer para mudar isso.</p>
 
-  <!-- CTA FINAL -->
-  <section class="cta">
-    <div class="container">
-      <h2>Você não precisa vender mais.</h2>
-      <p>Precisa parar de perder dinheiro.</p>
+  <div class="closing-actions">
+    <a href="https://wa.me/5562996677168?text=Ol%C3%A1%2C+quero+o+diagn%C3%B3stico+financeiro" class="btn-primary" target="_blank">
+      Quero o diagnóstico financeiro →
+    </a>
+    <p class="closing-note"> Resposta rápida · 100% online</p>
+  </div>
+</section>
 
-      <a class="btn">Falar com especialista</a>
-
-      <div class="sub-info">
-        Sem compromisso • Resposta rápida • 100% online
-      </div>
-    </div>
-  </section>
-
-  <script>
-    // Scroll suave
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-      });
-    });
-  </script>
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="logo">Fin<span>Spots</span></a>
+  <p>Helaynne Alessandra · Consultoria Financeira para E-commerce</p>
+</footer>
 
 </body>
 </html>
