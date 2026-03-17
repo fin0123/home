@@ -1,463 +1,290 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FinSpots — Inteligência Financeira para E-commerce</title>
-<meta name="description" content="Descubra quanto sua loja realmente lucra. Análise financeira completa para e-commerces. Diagnóstico em 7 dias úteis.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-<style>
-:root {
-  --orange: #FF5C00;
-  --orange2: #FF7A2B;
-  --navy: #050A30;
-  --navy2: #0A1045;
-  --navy3: #0F1860;
-  --white: #FFFFFF;
-  --gray: #8A95B0;
-  --text: #E8EAF2;
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinSpots - Inteligência Financeira</title>
 
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  padding: 20px 5%; display: flex; justify-content: space-between; align-items: center;
-  backdrop-filter: blur(12px); background: rgba(5,10,48,0.85);
-  border-bottom: 1px solid rgba(255,92,0,0.12); transition: background 0.3s;
-}
-.logo { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; text-decoration: none; color: var(--white); }
-.logo span { color: var(--orange); }
-.nav-links { display: flex; gap: 28px; align-items: center; }
-.nav-links a { color: var(--gray); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
-.nav-links a:hover { color: var(--white); }
-.btn-nav { background: var(--orange) !important; color: var(--white) !important; padding: 10px 22px; border-radius: 6px; transition: all 0.2s !important; }
-.btn-nav:hover { background: var(--orange2) !important; transform: translateY(-1px); }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 
-#hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 5% 80px; position: relative; overflow: hidden; }
-.hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 70% at 80% 50%, rgba(255,92,0,0.12) 0%, transparent 70%), radial-gradient(ellipse 40% 50% at 20% 80%, rgba(15,24,96,0.8) 0%, transparent 70%); }
-.hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,92,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,92,0,0.04) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%); }
-.hero-content { position: relative; z-index: 2; max-width: 720px; }
-.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,92,0,0.12); border: 1px solid rgba(255,92,0,0.3); padding: 6px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 500; color: var(--orange2); margin-bottom: 28px; animation: fadeUp 0.6s ease both; }
-.hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--orange); border-radius: 50%; animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
-.hero-title { font-family: 'Syne', sans-serif; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 24px; animation: fadeUp 0.6s 0.1s ease both; }
-.hero-title .accent { color: var(--orange); }
-.hero-sub { font-size: 1.1rem; line-height: 1.75; color: var(--gray); max-width: 560px; margin-bottom: 40px; font-weight: 300; animation: fadeUp 0.6s 0.2s ease both; }
-.hero-sub strong { color: var(--white); font-weight: 500; }
-.hero-cta { display: flex; gap: 16px; flex-wrap: wrap; animation: fadeUp 0.6s 0.3s ease both; }
-.btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--orange); color: var(--white); text-decoration: none; padding: 16px 32px; border-radius: 8px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; transition: all 0.25s; }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(255,92,0,0.4); background: var(--orange2); }
-.btn-secondary { display: inline-flex; align-items: center; background: transparent; color: var(--white); text-decoration: none; padding: 16px 32px; border-radius: 8px; font-weight: 500; font-size: 1rem; border: 1px solid rgba(255,255,255,0.15); transition: all 0.25s; }
-.btn-secondary:hover { border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.04); }
-.hero-stats { display: flex; gap: 40px; flex-wrap: wrap; margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.06); animation: fadeUp 0.6s 0.4s ease both; }
-.hero-stat .num { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--orange); display: block; }
-.hero-stat .lbl { font-size: 0.82rem; color: var(--gray); margin-top: 2px; display: block; line-height: 1.4; }
+  <style>
+    :root {
+      --laranja: #FF5C00;
+      --azul: #050A30;
+      --branco: #FFFFFF;
+      --cinza: #D9D9D9;
+    }
 
-.sec { padding: 100px 5%; }
-.sec-dark { background: var(--navy2); }
-.sec-tag { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; display: block; }
-.sec-title { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
-.sec-sub { font-size: 1.05rem; color: var(--gray); line-height: 1.7; max-width: 600px; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-.crenca-box { max-width: 700px; }
-.crenca-lead { font-family: 'Syne', sans-serif; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
-.crenca-lead .accent { color: var(--orange); }
-.crenca-body { font-size: 1.05rem; color: var(--gray); line-height: 1.75; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--azul);
+      color: var(--branco);
+      line-height: 1.6;
+    }
 
-.dores-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px; }
-.dor-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 28px; transition: all 0.3s; position: relative; overflow: hidden; }
-.dor-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--orange), transparent); opacity: 0; transition: opacity 0.3s; }
-.dor-card:hover { border-color: rgba(255,92,0,0.2); transform: translateY(-3px); }
-.dor-card:hover::before { opacity: 1; }
-.dor-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0; }
-.dores-fechamento { margin-top: 40px; font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; }
-.dores-fechamento .accent { color: var(--orange); }
+    h1, h2, h3 {
+      font-family: 'Syne', sans-serif;
+    }
 
-.virada-box { max-width: 680px; }
-.virada-body { font-size: 1.1rem; color: var(--gray); line-height: 1.8; margin-bottom: 20px; }
-.virada-destaque { font-family: 'Syne', sans-serif; font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 800; line-height: 1.3; }
-.virada-destaque .accent { color: var(--orange); }
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
 
-.solucao-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 48px; }
-.solucao-texto .solucao-lead { font-size: 1.1rem; color: var(--gray); line-height: 1.75; margin-bottom: 24px; }
-.solucao-lista { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
-.solucao-item { display: flex; gap: 12px; align-items: flex-start; font-size: 0.95rem; color: var(--text); line-height: 1.5; }
-.solucao-item::before { content: ''; width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0; margin-top: 2px; background: rgba(255,92,0,0.15) url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='%23FF5C00' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center; }
-.solucao-obs { font-size: 0.9rem; color: var(--gray); font-style: italic; }
-.solucao-visual { background: var(--navy2); border: 1px solid rgba(255,92,0,0.15); border-radius: 20px; padding: 40px; position: relative; overflow: hidden; }
-.solucao-visual::before { content: ''; position: absolute; top: -60px; right: -60px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,92,0,0.12) 0%, transparent 70%); pointer-events: none; }
-.sv-label { font-size: 0.75rem; font-weight: 600; color: var(--orange); margin-bottom: 8px; display: block; letter-spacing: 0.08em; text-transform: uppercase; }
-.sv-title { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; margin-bottom: 6px; }
-.sv-sub { font-size: 0.88rem; color: var(--gray); margin-bottom: 28px; line-height: 1.6; }
-.sv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.sv-card { background: rgba(255,255,255,0.04); border-radius: 10px; padding: 16px; border: 1px solid rgba(255,255,255,0.05); }
-.sv-card .val { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--orange); display: block; }
-.sv-card .desc { font-size: 0.78rem; color: var(--gray); margin-top: 4px; display: block; line-height: 1.4; }
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 80px 20px;
+    }
 
-.steps-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 56px; }
-.step-list { display: flex; flex-direction: column; }
-.step-item { display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid rgba(255,255,255,0.05); transition: all 0.2s; }
-.step-item:last-child { border-bottom: none; }
-.step-item:hover .step-num { background: var(--orange); color: var(--white); border-color: var(--orange); }
-.step-num { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid rgba(255,92,0,0.4); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.85rem; color: var(--orange); flex-shrink: 0; transition: all 0.25s; }
-.step-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 6px; }
-.step-desc { font-size: 0.9rem; color: var(--gray); line-height: 1.65; }
-.steps-visual { position: sticky; top: 120px; background: var(--navy2); border: 1px solid rgba(255,92,0,0.15); border-radius: 16px; padding: 36px; overflow: hidden; }
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 20px;
+    }
 
-.ganhos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 40px; }
-.ganho-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 28px; transition: all 0.3s; }
-.ganho-card:hover { border-color: rgba(255,92,0,0.2); transform: translateY(-2px); }
-.ganho-icon { font-size: 1.6rem; margin-bottom: 14px; display: block; }
-.ganho-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 8px; }
-.ganho-desc { font-size: 0.88rem; color: var(--gray); line-height: 1.6; }
+    .hero p {
+      font-size: 20px;
+      color: var(--cinza);
+      margin-bottom: 30px;
+    }
 
-.planos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 56px; }
-.plano-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 36px 28px; display: flex; flex-direction: column; transition: all 0.3s; position: relative; overflow: hidden; }
-.plano-card.destaque { background: rgba(255,92,0,0.06); border-color: rgba(255,92,0,0.35); }
-.plano-card.destaque::after { content: 'Mais escolhido'; position: absolute; top: 18px; right: 18px; background: var(--orange); color: var(--white); font-size: 0.7rem; font-weight: 700; font-family: 'Syne', sans-serif; letter-spacing: 0.05em; padding: 4px 10px; border-radius: 100px; }
-.plano-card:hover { transform: translateY(-4px); border-color: rgba(255,92,0,0.3); }
-.plano-card.destaque:hover { box-shadow: 0 20px 60px rgba(255,92,0,0.2); }
-.plano-tag { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); margin-bottom: 8px; }
-.plano-nome { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; margin-bottom: 20px; }
-.plano-preco { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.06); }
-.plano-de { font-size: 0.85rem; color: var(--gray); text-decoration: line-through; display: block; margin-bottom: 4px; }
-.plano-por { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--white); display: flex; align-items: flex-start; gap: 4px; }
-.plano-por .cifrao { font-size: 1.1rem; margin-top: 8px; color: var(--gray); }
-.plano-desc { font-size: 0.85rem; color: var(--gray); margin-bottom: 20px; line-height: 1.5; }
-.plano-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; flex: 1; }
-.plano-features li { display: flex; gap: 10px; font-size: 0.88rem; color: var(--text); line-height: 1.5; }
-.plano-features li::before { content: ''; width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0; margin-top: 1px; background: rgba(255,92,0,0.15) url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='%23FF5C00' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center; }
-.btn-plano { display: block; text-align: center; text-decoration: none; padding: 14px 24px; border-radius: 8px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; transition: all 0.25s; border: 1.5px solid rgba(255,255,255,0.15); color: var(--white); }
-.btn-plano:hover { border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.05); }
-.btn-plano.orange { background: var(--orange); border-color: var(--orange); }
-.btn-plano.orange:hover { background: var(--orange2); box-shadow: 0 8px 30px rgba(255,92,0,0.35); transform: translateY(-1px); }
-.plano-mensal { margin-top: 24px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; transition: border-color 0.3s; }
-.plano-mensal:hover { border-color: rgba(255,92,0,0.25); }
-.mensal-info .mensal-tag { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); margin-bottom: 6px; display: block; }
-.mensal-info .mensal-titulo { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; margin-bottom: 8px; }
-.mensal-info .mensal-desc { font-size: 0.88rem; color: var(--gray); max-width: 480px; line-height: 1.65; }
-.mensal-right { display: flex; align-items: center; gap: 32px; flex-shrink: 0; }
-.mensal-preco .val { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; display: block; }
-.mensal-preco .obs { font-size: 0.78rem; color: var(--gray); margin-top: 2px; display: block; }
+    .btn {
+      background: var(--laranja);
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+      display: inline-block;
+      margin: 5px;
+    }
 
-.depo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
-.depo-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 36px; position: relative; transition: all 0.3s; }
-.depo-card:hover { transform: translateY(-3px); border-color: rgba(255,92,0,0.2); }
-.depo-aspas { font-size: 3rem; color: var(--orange); line-height: 1; font-family: 'Syne', sans-serif; font-weight: 800; margin-bottom: 16px; opacity: 0.6; }
-.depo-badge { display: inline-block; background: rgba(255,92,0,0.12); border: 1px solid rgba(255,92,0,0.25); color: var(--orange2); font-size: 0.82rem; font-weight: 500; padding: 4px 12px; border-radius: 100px; margin-bottom: 16px; }
-.depo-texto { font-size: 1rem; line-height: 1.75; color: var(--text); margin-bottom: 24px; font-style: italic; }
-.depo-autor { display: flex; align-items: center; gap: 14px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.06); }
-.depo-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--orange), var(--navy3)); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.9rem; flex-shrink: 0; }
-.depo-nome { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; display: block; }
-.depo-loja { font-size: 0.8rem; color: var(--gray); display: block; margin-top: 2px; }
+    .btn:hover {
+      opacity: 0.85;
+    }
 
-#cta-final { padding: 120px 5%; background: var(--navy2); text-align: center; position: relative; overflow: hidden; }
-#cta-final::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 700px; height: 500px; background: radial-gradient(ellipse, rgba(255,92,0,0.1) 0%, transparent 70%); pointer-events: none; }
-.cta-title { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px; position: relative; }
-.cta-title .accent { color: var(--orange); }
-.cta-sub { font-size: 1.05rem; color: var(--gray); max-width: 480px; margin: 0 auto 40px; line-height: 1.7; position: relative; }
-.cta-group { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; position: relative; }
-.cta-obs { margin-top: 20px; font-size: 0.82rem; color: var(--gray); position: relative; }
+    .sub-info {
+      margin-top: 20px;
+      font-size: 14px;
+      color: var(--cinza);
+    }
 
-footer { padding: 40px 5%; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-footer p, footer a { font-size: 0.82rem; color: var(--gray); text-decoration: none; transition: color 0.2s; }
-footer a:hover { color: var(--orange); }
+    /* SECTION */
+    section {
+      padding: 60px 0;
+    }
 
-@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
-.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.65s ease, transform 0.65s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+    .section-title {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
 
-@media (max-width: 960px) {
-  .solucao-grid, .steps-wrapper { grid-template-columns: 1fr; }
-  .steps-visual { position: static; }
-  .planos-grid { grid-template-columns: 1fr; }
-  .depo-grid { grid-template-columns: 1fr; }
-  .nav-links { display: none; }
-  .mensal-right { flex-direction: column; align-items: flex-start; gap: 16px; }
-}
-@media (max-width: 600px) {
-  .hero-cta { flex-direction: column; }
-  .btn-primary, .btn-secondary { text-align: center; justify-content: center; }
-  .cta-group { flex-direction: column; align-items: center; }
-}
-</style>
+    .grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    /* CARDS */
+    .card {
+      background: #0b0f3a;
+      padding: 25px;
+      border-radius: 12px;
+    }
+
+    /* PLANOS */
+    .plans {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .plan {
+      background: #0b0f3a;
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+    }
+
+    .plan.highlight {
+      border: 1px solid var(--laranja);
+    }
+
+    .price {
+      font-size: 24px;
+      margin: 10px 0;
+      color: var(--laranja);
+    }
+
+    /* FOOTER CTA */
+    .cta {
+      text-align: center;
+      padding: 80px 20px;
+      background: #0b0f3a;
+    }
+
+  </style>
 </head>
+
 <body>
 
-<nav id="nav">
-  <a href="#" class="logo">Fin<span>Spots</span></a>
-  <div class="nav-links">
-    <a href="#como-funciona">Como funciona</a>
-    <a href="#planos">Planos</a>
-    <a href="#depoimentos">Resultados</a>
-    <a href="https://wa.me/5562996677168" class="btn-nav">Falar com especialista</a>
-  </div>
-</nav>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <img src="logo.png" alt="FinSpots" style="width:180px;margin-bottom:20px">
 
-<section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-content">
-    <div class="hero-badge">Inteligência Financeira para E-commerce</div>
-    <h1 class="hero-title">Você vende. Trabalha. Se esforça.<br><span class="accent">Mas no final do mês o dinheiro não sobra.</span></h1>
-    <p class="hero-sub">E o pior: você não sabe exatamente por quê. A maioria dos e-commerces fatura bem e perde dinheiro em silêncio todos os dias com taxas, frete, anúncios e falta de controle. <strong>A FinSpots mostra exatamente quanto você realmente lucra, onde está perdendo dinheiro e o que precisa mudar.</strong> Em até 7 dias você tem essa resposta.</p>
-    <div class="hero-cta">
-      <a href="https://wa.me/5562996677168" class="btn-primary">Quero descobrir meu lucro real <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      <a href="#planos" class="btn-secondary">Ver planos</a>
-    </div>
-    <div class="hero-stats">
-      <div class="hero-stat"><span class="num">68%</span><span class="lbl">das lojas não sabem<br>sua margem real</span></div>
-      <div class="hero-stat"><span class="num">R$ 497</span><span class="lbl">a partir de para<br>começar</span></div>
-      <div class="hero-stat"><span class="num">100%</span><span class="lbl">online, sem sair<br>de casa</span></div>
-    </div>
-  </div>
-</section>
+      <h1>Você vende. Mas o dinheiro não sobra.</h1>
+      <p>E o pior: você não sabe exatamente por quê.</p>
 
-<section class="sec">
-  <div class="reveal crenca-box">
-    <div class="crenca-lead">O problema não é falta de venda.<br><span class="accent">É não saber o que acontece com o dinheiro depois que ele entra.</span></div>
-    <p class="crenca-body">Você pode estar vendendo muito, girando estoque e investindo em tráfego e ainda assim não estar lucrando de verdade.</p>
-  </div>
-</section>
+      <a href="#planos" class="btn">Quero descobrir meu lucro real</a>
+      <a href="#planos" class="btn">Ver planos</a>
 
-<section class="sec sec-dark" id="dores">
-  <div class="reveal">
-    <span class="sec-tag">O problema</span>
-    <h2 class="sec-title">Se você já sentiu isso,<br>sua loja está vazando dinheiro</h2>
-  </div>
-  <div class="dores-grid reveal">
-    <div class="dor-card"><div class="dor-title">Você vende mas o dinheiro nunca sobra</div></div>
-    <div class="dor-card"><div class="dor-title">Não sabe se está lucrando ou só girando caixa</div></div>
-    <div class="dor-card"><div class="dor-title">Quanto mais vende, mais confuso fica</div></div>
-    <div class="dor-card"><div class="dor-title">Já pensou: estou trabalhando para nada?</div></div>
-    <div class="dor-card"><div class="dor-title">Investe em anúncios sem saber o retorno real</div></div>
-    <div class="dor-card"><div class="dor-title">Não sabe qual produto realmente dá lucro</div></div>
-  </div>
-  <div class="dores-fechamento reveal">Isso não é falta de esforço. <span class="accent">É falta de clareza financeira.</span></div>
-</section>
-
-<section class="sec">
-  <div class="reveal virada-box">
-    <span class="sec-tag">A virada</span>
-    <p class="virada-body">Você não aprendeu a olhar esses números quando começou. E ninguém te ensinou como enxergar o lucro de verdade.</p>
-    <div class="virada-destaque">Mas é exatamente isso que separa <span class="accent">uma loja que cresce</span> de uma que só gira dinheiro.</div>
-  </div>
-</section>
-
-<section class="sec sec-dark" id="solucao">
-  <div class="reveal">
-    <span class="sec-tag">A solução</span>
-    <h2 class="sec-title">Você não precisa entender de finanças.<br>Você só precisa das respostas certas.</h2>
-  </div>
-  <div class="solucao-grid">
-    <div class="solucao-texto reveal">
-      <p class="solucao-lead">A FinSpots analisa sua operação completa e te entrega:</p>
-      <div class="solucao-lista">
-        <div class="solucao-item">Quanto você realmente lucra</div>
-        <div class="solucao-item">Onde o dinheiro está sendo perdido</div>
-        <div class="solucao-item">Quais produtos e canais dão mais retorno</div>
-        <div class="solucao-item">O que ajustar primeiro para melhorar resultado</div>
-      </div>
-      <p class="solucao-obs">Sem planilha. Sem complicação. Sem achismo.</p>
-    </div>
-    <div class="solucao-visual reveal">
-      <span class="sv-label">O que você recebe</span>
-      <div class="sv-title">Clareza financeira em 7 dias</div>
-      <p class="sv-sub">Análise completa em linguagem humana, sem precisar entender de contabilidade.</p>
-      <div class="sv-grid">
-        <div class="sv-card"><span class="val">+23%</span><span class="desc">de margem recuperada ao identificar custos ocultos</span></div>
-        <div class="sv-card"><span class="val">3 a 5</span><span class="desc">recomendações prioritárias e acionáveis</span></div>
-        <div class="sv-card"><span class="val">100%</span><span class="desc">de clareza sobre seu lucro real mensal</span></div>
-        <div class="sv-card"><span class="val">7 dias</span><span class="desc">para análise completa da sua loja</span></div>
+      <div class="sub-info">
+        68% das lojas não sabem sua margem real • A partir de R$ 497 • 100% online
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="sec" id="como-funciona">
-  <div class="reveal">
-    <span class="sec-tag">O processo</span>
-    <h2 class="sec-title">Simples para você.<br>Profundo na análise.</h2>
-  </div>
-  <div class="steps-wrapper">
-    <div class="step-list reveal">
-      <div class="step-item"><div class="step-num">01</div><div><div class="step-title">Você envia os dados</div><p class="step-desc">Um formulário rápido. Pode ser aproximado. Sem precisar de contador nem de planilha.</p></div></div>
-      <div class="step-item"><div class="step-num">02</div><div><div class="step-title">A gente analisa tudo</div><p class="step-desc">Faturamento, custos, produtos e canais. Você não faz nada nessa etapa.</p></div></div>
-      <div class="step-item"><div class="step-num">03</div><div><div class="step-title">Você recebe o diagnóstico</div><p class="step-desc">Claro, direto e sem linguagem técnica. O que está funcionando e o que está drenando.</p></div></div>
-      <div class="step-item"><div class="step-num">04</div><div><div class="step-title">Reunião estratégica</div><p class="step-desc">Você sai sabendo exatamente o que fazer, sem precisar decifrar nada sozinha.</p></div></div>
+  <!-- PROBLEMA -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">O problema não é falta de venda.</h2>
+      <p>
+        É não saber o que acontece com o dinheiro depois que ele entra.
+      </p>
     </div>
-    <div class="steps-visual reveal">
-      <span class="sv-label">Prazo da análise</span>
-      <div class="sv-title">5 a 7 dias úteis</div>
-      <p class="sv-sub">Após o envio do formulário sua análise fica pronta e a reunião é agendada.</p>
-      <div class="sv-grid">
-        <div class="sv-card"><span class="val">100%</span><span class="desc">online, sem sair de casa</span></div>
-        <div class="sv-card"><span class="val">Zero</span><span class="desc">planilhas para você montar</span></div>
-        <div class="sv-card"><span class="val">1</span><span class="desc">formulário para preencher</span></div>
-        <div class="sv-card"><span class="val">2h</span><span class="desc">tempo médio de resposta</span></div>
+  </section>
+
+  <!-- DORES -->
+  <section>
+    <div class="container grid grid-2">
+      <div class="card">Você vende mas o dinheiro nunca sobra</div>
+      <div class="card">Não sabe se está lucrando ou só girando caixa</div>
+      <div class="card">Investe em anúncios sem saber retorno</div>
+      <div class="card">Não sabe qual produto dá lucro</div>
+    </div>
+  </section>
+
+  <!-- SOLUÇÃO -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">A FinSpots resolve isso</h2>
+      <p>
+        Você descobre quanto realmente lucra, onde perde dinheiro e o que ajustar primeiro.
+      </p>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section>
+    <div class="container grid grid-2">
+      <div class="card">Você envia os dados</div>
+      <div class="card">Analisamos tudo</div>
+      <div class="card">Você recebe diagnóstico claro</div>
+      <div class="card">Reunião estratégica</div>
+    </div>
+  </section>
+
+  <!-- BENEFÍCIOS -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">O que você ganha</h2>
+      <p>
+        Clareza financeira, decisões seguras e controle real do seu negócio.
+      </p>
+    </div>
+  </section>
+
+  <!-- PLANOS -->
+  <section id="planos">
+    <div class="container">
+      <h2 class="section-title">Planos</h2>
+
+      <div class="plans">
+
+        <div class="plan">
+          <h3>Clareza</h3>
+          <p class="price">R$ 497</p>
+          <p>Diagnóstico completo e ações prioritárias</p>
+          <a class="btn">Quero o diagnóstico</a>
+        </div>
+
+        <div class="plan highlight">
+          <h3>Controle</h3>
+          <p class="price">R$ 1.197</p>
+          <p>Organização financeira completa</p>
+          <a class="btn">Quero organizar minha loja</a>
+        </div>
+
+        <div class="plan">
+          <h3>Escala</h3>
+          <p class="price">R$ 2.197</p>
+          <p>Lucratividade por produto + estratégia</p>
+          <a class="btn">Quero escalar com lucro</a>
+        </div>
+
+        <div class="plan">
+          <h3>Mensal</h3>
+          <p class="price">R$ 790/mês</p>
+          <p>Acompanhamento contínuo</p>
+          <a class="btn">Quero acompanhamento</a>
+        </div>
+
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="sec sec-dark" id="ganhos">
-  <div class="reveal">
-    <span class="sec-tag">O que você ganha</span>
-    <h2 class="sec-title">Você não vai receber<br>só um relatório.</h2>
-    <p class="sec-sub">Você vai sair com algo muito mais valioso.</p>
-  </div>
-  <div class="ganhos-grid reveal">
-    <div class="ganho-card"><span class="ganho-icon">🔍</span><div class="ganho-title">Entende seu lucro de verdade</div><p class="ganho-desc">Não o faturamento. O lucro real, depois de todos os custos contabilizados.</p></div>
-    <div class="ganho-card"><span class="ganho-icon">🛑</span><div class="ganho-title">Para de perder dinheiro sem perceber</div><p class="ganho-desc">Cada custo oculto identificado é dinheiro que volta direto para o seu bolso.</p></div>
-    <div class="ganho-card"><span class="ganho-icon">🎯</span><div class="ganho-title">Toma decisões com segurança</div><p class="ganho-desc">Chega de achismo. Cada escolha passa a ser baseada em número real da sua loja.</p></div>
-    <div class="ganho-card"><span class="ganho-icon">⚙️</span><div class="ganho-title">Tem controle sobre sua operação</div><p class="ganho-desc">Você sabe o que entra, o que sai e o que sobra. Simples assim.</p></div>
-  </div>
-</section>
-
-<section class="sec" id="planos">
-  <div class="reveal" style="text-align:center">
-    <span class="sec-tag">Investimento</span>
-    <h2 class="sec-title">Escolha o plano certo<br>para o seu momento</h2>
-    <p class="sec-sub" style="margin:0 auto 56px">Sem contrato de fidelidade. Sem letras miúdas. Só resultado.</p>
-  </div>
-  <div class="planos-grid reveal">
-    <div class="plano-card">
-      <div class="plano-tag">Clareza</div>
-      <div class="plano-nome">Diagnóstico Financeiro</div>
-      <div class="plano-preco">
-        <span class="plano-de">R$ 800,00</span>
-        <div class="plano-por"><span class="cifrao">R$</span>497</div>
+  <!-- PROVA -->
+  <section>
+    <div class="container grid grid-2">
+      <div class="card">
+        “Achei que lucrava 40%. Era 11%. Dobrei o lucro.”
       </div>
-      <p class="plano-desc">Para quem quer entender o que está acontecendo.</p>
-      <ul class="plano-features">
-        <li>Diagnóstico completo da operação</li>
-        <li>Margem real bruta e líquida</li>
-        <li>Identificação de perdas</li>
-        <li>3 a 5 ações prioritárias</li>
-        <li>Reunião explicativa</li>
-      </ul>
-      <a href="https://wa.me/5562996677168" class="btn-plano">Quero o diagnóstico</a>
-    </div>
-    <div class="plano-card destaque">
-      <div class="plano-tag">Controle</div>
-      <div class="plano-nome">Estruturação Financeira</div>
-      <div class="plano-preco">
-        <span class="plano-de">R$ 1.500,00</span>
-        <div class="plano-por"><span class="cifrao">R$</span>1.197</div>
-      </div>
-      <p class="plano-desc">Para quem quer organizar a operação de vez.</p>
-      <ul class="plano-features">
-        <li>Tudo do plano anterior</li>
-        <li>Organização do fluxo de caixa</li>
-        <li>Estrutura financeira completa</li>
-        <li>Indicadores definidos</li>
-        <li>Método de controle contínuo</li>
-      </ul>
-      <a href="https://wa.me/5562996677168" class="btn-plano orange">Quero organizar minha loja</a>
-    </div>
-    <div class="plano-card">
-      <div class="plano-tag">Escala</div>
-      <div class="plano-nome">Inteligência Financeira</div>
-      <div class="plano-preco">
-        <span class="plano-de">R$ 3.200,00</span>
-        <div class="plano-por"><span class="cifrao">R$</span>2.197</div>
-      </div>
-      <p class="plano-desc">Para quem quer crescer com lucro de verdade.</p>
-      <ul class="plano-features">
-        <li>Tudo do Controle</li>
-        <li>Lucratividade por produto</li>
-        <li>Análise por canal de venda</li>
-        <li>CAC e retorno de marketing</li>
-        <li>Dashboard e estratégia</li>
-      </ul>
-      <a href="https://wa.me/5562996677168" class="btn-plano">Quero escalar com lucro</a>
-    </div>
-  </div>
-  <div class="plano-mensal reveal">
-    <div class="mensal-info">
-      <span class="mensal-tag">Acompanhamento Mensal</span>
-      <div class="mensal-titulo">Você foca na loja. A gente cuida dos números.</div>
-      <p class="mensal-desc">Análise mensal dos dados, relatório estratégico e reunião de acompanhamento. Cancelamento com aviso de 30 dias.</p>
-    </div>
-    <div class="mensal-right">
-      <div class="mensal-preco">
-        <span class="val">R$ 790<span style="font-size:1rem;color:var(--gray);font-weight:400">/mês</span></span>
-        <span class="obs">Cancele quando quiser</span>
-      </div>
-      <a href="https://wa.me/5562996677168" class="btn-plano orange" style="white-space:nowrap">Quero acompanhamento</a>
-    </div>
-  </div>
-</section>
-
-<section class="sec sec-dark" id="depoimentos">
-  <div class="reveal" style="text-align:center">
-    <span class="sec-tag">Resultados</span>
-    <h2 class="sec-title">Quem entende os números,<br>muda o jogo.</h2>
-  </div>
-  <div class="depo-grid">
-    <div class="depo-card reveal">
-      <div class="depo-aspas">"</div>
-      <span class="depo-badge">+31% de margem recuperada</span>
-      <p class="depo-texto">Eu achava que lucrava 40%. Era 11%. Ajustei preços e dobrei meu lucro em 2 meses.</p>
-      <div class="depo-autor">
-        <div class="depo-avatar">MC</div>
-        <div><span class="depo-nome">Mariana C.</span><span class="depo-loja">Moda feminina — Shopee e Mercado Livre</span></div>
+      <div class="card">
+        “Evitei crise de caixa e não precisei de empréstimo.”
       </div>
     </div>
-    <div class="depo-card reveal">
-      <div class="depo-aspas">"</div>
-      <span class="depo-badge">R$ 4.200 previstos com antecedência</span>
-      <p class="depo-texto">Evitei uma crise de caixa e não precisei pegar empréstimo.</p>
-      <div class="depo-autor">
-        <div class="depo-avatar">JP</div>
-        <div><span class="depo-nome">Juliana P.</span><span class="depo-loja">Cosméticos naturais — Instagram</span></div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta">
+    <div class="container">
+      <h2>Você não precisa vender mais.</h2>
+      <p>Precisa parar de perder dinheiro.</p>
+
+      <a class="btn">Falar com especialista</a>
+
+      <div class="sub-info">
+        Sem compromisso • Resposta rápida • 100% online
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="cta-final">
-  <div class="reveal">
-    <h2 class="cta-title">Você não precisa vender mais.<br>Precisa <span class="accent">parar de perder dinheiro.</span></h2>
-    <p class="cta-sub">Em até 7 dias você descobre quanto realmente lucra, onde está perdendo dinheiro e o que fazer para mudar isso.</p>
-    <div class="cta-group">
-      <a href="https://wa.me/5562996677168" class="btn-primary" style="font-size:1.05rem;padding:18px 36px">Falar com especialista <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M10 5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-    </div>
-    <p class="cta-obs">Sem compromisso &nbsp;•&nbsp; Resposta rápida &nbsp;•&nbsp; 100% online</p>
-  </div>
-</section>
+  <script>
+    // Scroll suave
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
 
-<footer>
-  <a href="#" class="logo">Fin<span>Spots</span></a>
-  <p>CNPJ 64.968.768/0001-36 &nbsp;•&nbsp; © 2025 FinSpots</p>
-  <a href="mailto:contato@finspots.com.br">contato@finspots.com.br</a>
-</footer>
-
-<script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i * 80);
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.08 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.style.background = window.scrollY > 60 ? 'rgba(5,10,48,0.97)' : 'rgba(5,10,48,0.85)';
-});
-
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
-  });
-});
-</script>
 </body>
 </html>
