@@ -1,343 +1,380 @@
-<!DOCTYPE HTML>
-<!--
-	Editorial by HTML5 UP
-	html5up.net | @ajlkn
-	Adaptado para FinSpots
--->
+<!DOCTYPE html>
 <html lang="pt-BR">
-	<head>
-		<title>FinSpots — Inteligência Financeira para E-commerce</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<meta name="description" content="Você sabe quanto sua loja fatura. Mas sabe quanto ela lucra de verdade? A FinSpots analisa os dados do seu e-commerce e te diz exatamente o que fazer para lucrar mais." />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-		<style>
-			:root {
-				--orange: #FF6600;
-				--navy: #050A30;
-				--dark: #00001A;
-				--white: #ffffff;
-			}
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinSpots - Inteligência Financeira para E-commerce</title>
 
-			body, h1, h2, h3, h4, p, a, li, span {
-				font-family: 'DM Sans', sans-serif;
-			}
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
-			/* ── SIDEBAR ── */
-			#sidebar {
-				background: var(--dark) !important;
-				border-right: 1px solid rgba(255,255,255,0.06);
-			}
+<style>
+:root{
+  --orange:#FF5C00;
+  --navy:#050A30;
+  --white:#FFFFFF;
+  --gray:#A0A3B1;
+}
 
-			#sidebar-logo {
-				padding: 1.5em 1.5em 1em;
-				border-bottom: 1px solid rgba(255,255,255,0.08);
-				margin-bottom: 1.5em;
-			}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-			#sidebar-logo .fin { color: var(--white); font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5em; }
-			#sidebar-logo .spots { color: var(--orange); font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5em; }
-			#sidebar-logo p { color: rgba(255,255,255,0.4); font-size: 0.72em; margin: 0.2em 0 0; }
+body{
+  font-family:'DM Sans', sans-serif;
+  background:#02051a;
+  color:var(--white);
+  line-height:1.6;
+}
 
-			#sidebar #menu nav ul li a {
-				color: rgba(255,255,255,0.7) !important;
-				border-left: none !important;
-				padding-left: 0.5em;
-				transition: color 0.2s;
-			}
+h1,h2,h3{
+  font-family:'Syne', sans-serif;
+}
 
-			#sidebar #menu nav ul li a:hover { color: var(--orange) !important; }
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:40px 20px;
+}
 
-			#sidebar section h2,
-			#sidebar #menu header h2 {
-				color: rgba(255,255,255,0.3) !important;
-				font-size: 0.65em !important;
-				letter-spacing: 0.12em !important;
-				text-transform: uppercase !important;
-				border-bottom: 1px solid rgba(255,255,255,0.08) !important;
-				padding-bottom: 0.8em !important;
-			}
+.btn{
+  display:inline-block;
+  padding:14px 22px;
+  border-radius:6px;
+  text-decoration:none;
+  font-weight:600;
+  transition:.3s;
+}
 
-			#sidebar .contact li {
-				color: rgba(255,255,255,0.6) !important;
-				border-top: 1px solid rgba(255,255,255,0.06) !important;
-			}
+.btn-primary{
+  background:var(--orange);
+  color:#fff;
+}
 
-			#sidebar .contact li a { color: var(--orange) !important; }
-			#sidebar .contact li::before { color: var(--orange) !important; }
+.btn-primary:hover{
+  opacity:.85;
+}
 
-			#sidebar footer p,
-			#sidebar footer a {
-				color: rgba(255,255,255,0.25) !important;
-				font-size: 0.75em;
-			}
+.btn-outline{
+  border:1px solid var(--orange);
+  color:var(--orange);
+}
 
-			/* ── HEADER ── */
-			#header {
-				background: #fff !important;
-				border-bottom: 2px solid var(--orange) !important;
-				padding: 1em 1.5em !important;
-			}
+.nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:999;
+  transition:.3s;
+  padding:15px 20px;
+}
 
-			#header .logo {
-				font-family: 'Syne', sans-serif !important;
-				font-weight: 800 !important;
-				font-size: 1.2em !important;
-				color: var(--dark) !important;
-				text-decoration: none !important;
-				border: none !important;
-			}
+.nav.scrolled{
+  background:#01031a;
+}
 
-			#header .logo .fin { color: var(--dark); }
-			#header .logo .spots { color: var(--orange); }
-			#header .icons a { color: var(--navy) !important; transition: color 0.2s; }
-			#header .icons a:hover { color: var(--orange) !important; }
+.nav-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  max-width:1100px;
+  margin:auto;
+}
 
-			/* ── BANNER / HERO ── */
-			#banner {
-				background: var(--navy);
-				border-radius: 8px;
-				padding: 3.5em !important;
-				margin-bottom: 2em;
-				position: relative;
-				overflow: hidden;
-			}
+.logo{
+  font-weight:700;
+  font-family:'Syne';
+}
 
-			#banner::before {
-				content: '';
-				position: absolute;
-				top: -60px; right: -60px;
-				width: 320px; height: 320px;
-				border-radius: 50%;
-				background: radial-gradient(circle, rgba(255,102,0,0.15) 0%, transparent 70%);
-				pointer-events: none;
-			}
+.nav a{
+  margin-left:20px;
+  color:#fff;
+  text-decoration:none;
+  font-size:14px;
+}
 
-			#banner .content header h1 {
-				font-family: 'Syne', sans-serif !important;
-				font-weight: 800 !important;
-				font-size: 2.4em !important;
-				line-height: 1.15 !important;
-				color: var(--white) !important;
-				margin-bottom: 0.4em;
-			}
+.hero{
+  padding-top:120px;
+  text-align:center;
+}
 
-			#banner .content header h1 .destaque { color: var(--orange); }
+.hero h1{
+  font-size:38px;
+  margin-bottom:20px;
+}
 
-			#banner .content header p {
-				color: rgba(255,255,255,0.45) !important;
-				font-size: 0.8em !important;
-				text-transform: uppercase;
-				letter-spacing: 0.12em;
-				margin-bottom: 1.2em;
-			}
+.hero p{
+  color:var(--gray);
+  max-width:700px;
+  margin:0 auto 30px;
+}
 
-			#banner .content > p {
-				color: rgba(255,255,255,0.75) !important;
-				font-size: 1.05em !important;
-				line-height: 1.75 !important;
-				max-width: 480px;
-			}
+.stats{
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  margin-top:40px;
+}
 
-			/* ── BOTÃO WHATSAPP ── */
-			.button-zap {
-				display: inline-flex !important;
-				align-items: center;
-				gap: 10px;
-				background: var(--orange) !important;
-				color: var(--white) !important;
-				font-family: 'DM Sans', sans-serif !important;
-				font-weight: 500 !important;
-				font-size: 1em !important;
-				padding: 0.85em 2em !important;
-				border-radius: 6px !important;
-				border: none !important;
-				text-decoration: none !important;
-				transition: background 0.2s, transform 0.15s !important;
-				box-shadow: 0 4px 20px rgba(255,102,0,0.35);
-			}
+.stat{
+  text-align:center;
+  font-size:14px;
+}
 
-			.button-zap:hover {
-				background: #e05500 !important;
-				transform: translateY(-2px);
-				color: #fff !important;
-			}
+.section{
+  padding:80px 0;
+}
 
-			.button-zap svg {
-				width: 18px; height: 18px;
-				fill: white;
-				flex-shrink: 0;
-			}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+  margin-top:30px;
+}
 
-			/* ── IMAGEM HERO ── */
-			#banner .image.object {
-				border-radius: 8px;
-				overflow: hidden;
-				box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-			}
+.card{
+  background:#070b2c;
+  padding:25px;
+  border-radius:10px;
+}
 
-			#banner .image.object img {
-				border-radius: 8px;
-				filter: brightness(0.9) saturate(1.1);
-			}
+.highlight{
+  border:2px solid var(--orange);
+}
 
-			/* ── FEATURES ── */
-			.features article .icon { color: var(--orange) !important; }
+.plans{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
 
-			.features article .icon::before {
-				background: rgba(255,102,0,0.08) !important;
-				border-color: rgba(255,102,0,0.2) !important;
-			}
+.plan{
+  background:#070b2c;
+  padding:25px;
+  border-radius:10px;
+}
 
-			.features article h3 {
-				font-family: 'Syne', sans-serif !important;
-				font-weight: 700 !important;
-				color: var(--dark) !important;
-			}
+.plan h3{
+  margin-bottom:10px;
+}
 
-			/* ── SECTION HEADERS ── */
-			.major h2 {
-				font-family: 'Syne', sans-serif !important;
-				font-weight: 800 !important;
-				color: var(--dark) !important;
-			}
+.price{
+  font-size:26px;
+  margin:10px 0;
+}
 
-			.major h2::after { background: var(--orange) !important; }
+.testimonial{
+  background:#070b2c;
+  padding:25px;
+  border-radius:10px;
+}
 
-			/* ── MOBILE ── */
-			@media screen and (max-width: 736px) {
-				#banner { padding: 2em !important; }
-				#banner .content header h1 { font-size: 1.7em !important; }
-			}
-		</style>
-	</head>
-	<body class="is-preload">
+.badge{
+  color:var(--orange);
+  font-weight:bold;
+  margin-top:10px;
+}
 
-		<div id="wrapper">
+.footer{
+  text-align:center;
+  padding:40px 20px;
+  border-top:1px solid #111;
+  color:var(--gray);
+}
 
-			<!-- Main -->
-			<div id="main">
-				<div class="inner">
+/* Scroll reveal */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all .6s ease;
+}
 
-					<!-- Header -->
-					<header id="header">
-						<a href="index.html" class="logo">
-							<span class="fin">Fin</span><span class="spots">Spots</span>
-						</a>
-						<ul class="icons">
-							<li><a href="https://wa.me/5562996677168" target="_blank" class="icon brands fa-whatsapp"><span class="label">WhatsApp</span></a></li>
-						</ul>
-					</header>
+.reveal.active{
+  opacity:1;
+  transform:none;
+}
 
-					<!-- Banner / Hero -->
-					<section id="banner">
-						<div class="content">
-							<header>
-								<p>Inteligência Financeira para E-commerce</p>
-								<h1>Você sabe quanto<br/>sua loja fatura.<br/><span class="destaque">Mas sabe quanto<br/>ela lucra?</span></h1>
-							</header>
-							<p>Analisamos os dados do seu e-commerce e te dizemos exatamente onde o dinheiro está indo e como lucrar mais. Sem planilha pra montar, sem dado pra interpretar. Você recebe as respostas.</p>
-							<ul class="actions" style="margin-top: 1.8em;">
-								<li>
-									<a href="https://wa.me/5562996677168?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20a%20FinSpots!" target="_blank" class="button-zap">
-										<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-										Falar com a FinSpots
-									</a>
-								</li>
-							</ul>
-						</div>
-						<span class="image object">
-							<img src="images/pic10.jpg" alt="Análise financeira para e-commerce" />
-						</span>
-					</section>
+/* Mobile */
+@media(max-width:768px){
+  .hero h1{
+    font-size:26px;
+  }
+  .stats{
+    flex-direction:column;
+    gap:15px;
+  }
+}
+</style>
+</head>
 
-					<!-- Como funciona -->
-					<section>
-						<header class="major">
-							<h2>Como funciona</h2>
-						</header>
-						<div class="features">
-							<article>
-								<span class="icon solid fa-file-alt"></span>
-								<div class="content">
-									<h3>Você preenche um formulário</h3>
-									<p>Simples e rápido. Dados aproximados já são suficientes para começar. Não precisa parar o que está fazendo.</p>
-								</div>
-							</article>
-							<article>
-								<span class="icon solid fa-chart-bar"></span>
-								<div class="content">
-									<h3>A gente analisa tudo</h3>
-									<p>Faturamento, custos, margens, produtos e canais de venda. Você não precisa fazer nada nessa etapa.</p>
-								</div>
-							</article>
-							<article>
-								<span class="icon solid fa-file-invoice-dollar"></span>
-								<div class="content">
-									<h3>Você recebe o relatório</h3>
-									<p>Um documento claro com o diagnóstico da sua loja: o que está funcionando e o que está drenando dinheiro.</p>
-								</div>
-							</article>
-							<article>
-								<span class="icon solid fa-comments"></span>
-								<div class="content">
-									<h3>Reunião de apresentação</h3>
-									<p>Apresentamos os resultados e as recomendações. Você sai sabendo exatamente o que fazer para lucrar mais.</p>
-								</div>
-							</article>
-						</div>
-					</section>
+<body>
 
-				</div>
-			</div>
+<div class="nav" id="nav">
+  <div class="nav-inner">
+    <div class="logo">FinSpots</div>
+    <div>
+      <a href="#planos">Planos</a>
+      <a href="#como">Como funciona</a>
+      <a href="https://wa.me/5562996677168" class="btn btn-primary">Falar com especialista</a>
+    </div>
+  </div>
+</div>
 
-			<!-- Sidebar -->
-			<div id="sidebar">
-				<div class="inner">
+<section class="hero container reveal">
+<h1>Você vende. Trabalha. Se esforça. Mas no final do mês o dinheiro não sobra. E o pior: você não sabe exatamente por quê.</h1>
+<p>A maioria dos e-commerces fatura bem e perde dinheiro em silêncio todos os dias com taxas, frete, anúncios e falta de controle. A FinSpots mostra exatamente quanto você realmente lucra, onde está perdendo dinheiro e o que precisa mudar. Em até 7 dias você tem essa resposta.</p>
 
-					<div id="sidebar-logo">
-						<div>
-							<span class="fin">Fin</span><span class="spots">Spots</span>
-						</div>
-						<p>Inteligência Financeira para E-commerce</p>
-					</div>
+<a href="https://wa.me/5562996677168" class="btn btn-primary">Quero descobrir meu lucro real</a>
+<a href="#planos" class="btn btn-outline">Ver planos</a>
 
-					<nav id="menu">
-						<header class="major">
-							<h2>Menu</h2>
-						</header>
-						<ul>
-							<li><a href="index.html">Início</a></li>
-							<li><a href="https://wa.me/5562996677168?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20a%20FinSpots!" target="_blank">Falar conosco</a></li>
-						</ul>
-					</nav>
+<div class="stats">
+  <div class="stat">68% das lojas não sabem sua margem real</div>
+  <div class="stat">A partir de R$ 497</div>
+  <div class="stat">100% online</div>
+</div>
+</section>
 
-					<section>
-						<header class="major">
-							<h2>Contato</h2>
-						</header>
-						<p style="color: rgba(255,255,255,0.5); font-size: 0.9em; line-height: 1.6;">Quer saber quanto sua loja pode lucrar? Fale com a gente.</p>
-						<ul class="contact">
-							<li class="icon brands fa-whatsapp">
-								<a href="https://wa.me/5562996677168?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20a%20FinSpots!" target="_blank">(62) 99667-7168</a>
-							</li>
-							<li class="icon solid fa-envelope">
-								<a href="/cdn-cgi/l/email-protection#5f3c30312b3e2b301f3936312c2f302b2c713c3032713d2d"><span class="__cf_email__" data-cfemail="9ffcf0f1ebfeebf0dff9f6f1eceff0ebecb1fcf0f2b1fded">[email&#160;protected]</span></a>
-							</li>
-						</ul>
-					</section>
+<section class="section container reveal">
+<h2>O problema não é falta de venda. É não saber o que acontece com o dinheiro depois que ele entra.</h2>
+<p>Você pode estar vendendo muito, girando estoque e investindo em tráfego e ainda assim não estar lucrando de verdade.</p>
+</section>
 
-					<footer id="footer">
-						<p class="copyright">&copy; FinSpots. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-					</footer>
+<section class="section container reveal">
+<div class="cards">
+  <div class="card">Você vende mas o dinheiro nunca sobra</div>
+  <div class="card">Não sabe se está lucrando ou só girando caixa</div>
+  <div class="card">Quanto mais vende, mais confuso fica</div>
+  <div class="card">Já pensou: estou trabalhando para nada?</div>
+  <div class="card">Investe em anúncios sem saber o retorno real</div>
+  <div class="card">Não sabe qual produto realmente dá lucro</div>
+</div>
+<p style="margin-top:20px;">Isso não é falta de esforço. É falta de clareza financeira.</p>
+</section>
 
-				</div>
-			</div>
+<section class="section container reveal">
+<h2>Você não aprendeu a olhar esses números quando começou.</h2>
+<p>E ninguém te ensinou como enxergar o lucro de verdade. Mas é exatamente isso que separa uma loja que cresce de uma que só gira dinheiro.</p>
+</section>
 
-		</div>
+<section class="section container reveal">
+<h2>Você não precisa entender de finanças.</h2>
+<p>Você só precisa das respostas certas. A FinSpots analisa sua operação completa e te entrega quanto você realmente lucra, onde o dinheiro está sendo perdido, quais produtos e canais dão mais retorno e o que ajustar primeiro para melhorar resultado. Sem planilha. Sem complicação. Sem achismo.</p>
+</section>
 
-		<!-- Scripts -->
-		<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script s
+<section class="section container reveal" id="como">
+<h2>Como funciona</h2>
+<div class="cards">
+  <div class="card">1 Você envia os dados, formulário rápido</div>
+  <div class="card">2 A gente analisa tudo, faturamento, custos, produtos, canais</div>
+  <div class="card">3 Você recebe o diagnóstico, claro, direto e sem linguagem técnica</div>
+  <div class="card">4 Reunião estratégica, você sai sabendo exatamente o que fazer</div>
+</div>
+</section>
+
+<section class="section container reveal">
+<h2>O que você ganha</h2>
+<p>Você não vai receber só um relatório. Você vai entender seu lucro de verdade, parar de perder dinheiro sem perceber, tomar decisões com segurança e ter controle sobre sua operação.</p>
+</section>
+
+<section class="section container reveal" id="planos">
+<h2>Planos</h2>
+<div class="plans">
+
+<div class="plan">
+<h3>Clareza</h3>
+<div class="price">R$ 497</div>
+<p>diagnóstico completo</p>
+<p>margem real bruta e líquida</p>
+<p>identificação de perdas</p>
+<p>3 a 5 ações prioritárias</p>
+<p>reunião explicativa</p>
+<a href="https://wa.me/5562996677168" class="btn btn-primary">Quero o diagnóstico</a>
+</div>
+
+<div class="plan highlight">
+<h3>Controle</h3>
+<div class="price">R$ 1.197</div>
+<p>tudo do anterior</p>
+<p>organização do fluxo de caixa</p>
+<p>estrutura financeira</p>
+<p>indicadores definidos</p>
+<p>método de controle contínuo</p>
+<a href="https://wa.me/5562996677168" class="btn btn-primary">Quero organizar minha loja</a>
+</div>
+
+<div class="plan">
+<h3>Escala</h3>
+<div class="price">R$ 2.197</div>
+<p>tudo do Controle</p>
+<p>lucratividade por produto</p>
+<p>análise por canal</p>
+<p>CAC e retorno de marketing</p>
+<p>dashboard e estratégia</p>
+<a href="https://wa.me/5562996677168" class="btn btn-primary">Quero escalar com lucro</a>
+</div>
+
+</div>
+
+<div class="plan" style="margin-top:30px;">
+<h3>Acompanhamento Mensal</h3>
+<div class="price">R$ 790/mês</div>
+<p>análise mensal</p>
+<p>relatório estratégico</p>
+<p>reunião de acompanhamento</p>
+<a href="https://wa.me/5562996677168" class="btn btn-primary">Quero acompanhamento</a>
+</div>
+
+</section>
+
+<section class="section container reveal">
+<div class="cards">
+  <div class="testimonial">
+    <p>"Eu achava que lucrava 40%. Era 11%. Ajustei preços e dobrei meu lucro em 2 meses."</p>
+    <div class="badge">+31% de margem recuperada</div>
+  </div>
+  <div class="testimonial">
+    <p>"Evitei uma crise de caixa e não precisei pegar empréstimo."</p>
+    <div class="badge">R$ 4.200 previstos com antecedência</div>
+  </div>
+</div>
+</section>
+
+<section class="section container reveal" style="text-align:center;">
+<h2>Você não precisa vender mais. Precisa parar de perder dinheiro.</h2>
+<p>Em até 7 dias você descobre quanto realmente lucra, onde está perdendo dinheiro e o que fazer para mudar isso.</p>
+
+<a href="https://wa.me/5562996677168" class="btn btn-primary">Falar com especialista</a>
+
+<p style="margin-top:10px;color:var(--gray);">Sem compromisso. Resposta rápida. 100% online.</p>
+</section>
+
+<footer class="footer">
+<p><strong>FinSpots</strong></p>
+<p>CNPJ 64.968.768/0001-36</p>
+<p>contato@finspots.com.br</p>
+</footer>
+
+<script>
+// navbar scroll
+window.addEventListener("scroll", function(){
+  document.getElementById("nav").classList.toggle("scrolled", window.scrollY > 50);
+});
+
+// reveal
+function reveal(){
+  document.querySelectorAll(".reveal").forEach(el=>{
+    const top = el.getBoundingClientRect().top;
+    if(top < window.innerHeight - 100){
+      el.classList.add("active");
+    }
+  });
+}
+
+window.addEventListener("scroll", reveal);
+window.addEventListener("load", reveal);
+</script>
+
+</body>
+</html>
