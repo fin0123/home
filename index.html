@@ -1,5 +1,4 @@
-
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -7,7 +6,7 @@
 <title>FinSpots — Diagnóstico Financeiro para E-commerce</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --orange: #FF5F00;
@@ -43,7 +42,7 @@
   }
 
   .logo {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 21px;
     font-weight: 800;
     letter-spacing: -0.5px;
@@ -55,7 +54,7 @@
   .nav-cta {
     background: var(--orange);
     color: var(--white);
-    font-family: 'poppins', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 13px;
     padding: 10px 22px;
@@ -75,9 +74,10 @@
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 60px;
     padding: 130px 48px 90px;
     position: relative;
     overflow: hidden;
@@ -91,8 +91,13 @@
     pointer-events: none;
   }
 
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+  }
+
   .hero-eyebrow {
-    font-family: 'poppins', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 3.5px;
@@ -103,52 +108,24 @@
   }
 
   .hero h1 {
-    font-family: 'poppins', sans-serif;
-    font-size: clamp(44px, 7.5vw, 92px);
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(36px, 5.5vw, 76px);
     font-weight: 800;
     line-height: 1.0;
     letter-spacing: -2.5px;
-    max-width: 820px;
     animation: fadeUp 0.5s ease both 0.22s;
   }
 
   .hero h1 em { font-style: normal; color: var(--orange); }
 
   .hero-sub {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 300;
     color: rgba(255,255,255,0.58);
     max-width: 500px;
     line-height: 1.75;
     margin-top: 26px;
     animation: fadeUp 0.5s ease both 0.36s;
-  }
-
-  .hero-stat {
-    display: inline-flex;
-    align-items: center;
-    gap: 16px;
-    margin-top: 38px;
-    padding: 16px 24px;
-    background: var(--orange-dim);
-    border: 1px solid var(--orange-border);
-    border-radius: 10px;
-    animation: fadeUp 0.5s ease both 0.50s;
-  }
-
-  .hero-stat strong {
-    font-family: 'poppins', sans-serif;
-    font-size: 30px;
-    font-weight: 800;
-    color: var(--orange);
-    line-height: 1;
-  }
-
-  .hero-stat p {
-    font-size: 13px;
-    color: rgba(255,255,255,0.6);
-    line-height: 1.45;
-    max-width: 180px;
   }
 
   .hero-actions {
@@ -163,7 +140,7 @@
   .btn-primary {
     background: var(--orange);
     color: var(--white);
-    font-family: 'poppins', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 15px;
     padding: 17px 38px;
@@ -201,6 +178,70 @@
     border-radius: 100px;
   }
 
+  /* ── HERO IMAGE ── */
+  .hero-image-wrap {
+    position: relative;
+    animation: fadeUp 0.6s ease both 0.4s;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .hero-image-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,95,0,0.15) 0%, transparent 60%);
+    z-index: 1;
+    border-radius: 20px;
+  }
+
+  .hero-image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(255,95,0,0.25);
+    border-radius: 20px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .hero-image-wrap img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    display: block;
+    border-radius: 20px;
+    filter: brightness(0.85) saturate(1.1);
+  }
+
+  .hero-image-tag {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 3;
+    background: rgba(0,5,26,0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,95,0,0.3);
+    border-radius: 10px;
+    padding: 12px 18px;
+  }
+
+  .hero-image-tag strong {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--orange);
+    display: block;
+    line-height: 1;
+  }
+
+  .hero-image-tag span {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
   /* ── SECTIONS ── */
   .section {
     padding: 100px 48px;
@@ -218,7 +259,7 @@
   }
 
   .section-label {
-    font-family: 'poppins', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 3.5px;
@@ -228,7 +269,7 @@
   }
 
   h2 {
-    font-family: 'poppins', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: clamp(28px, 4vw, 46px);
     font-weight: 800;
     letter-spacing: -1px;
@@ -274,7 +315,7 @@
   }
 
   .problem-card h3 {
-    font-family: 'poppins', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 15px;
     font-weight: 700;
     margin-bottom: 9px;
@@ -347,7 +388,7 @@
   }
 
   .symptoms-callout strong {
-    font-family: 'poppins', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 17px;
     font-weight: 700;
     display: block;
@@ -392,7 +433,7 @@
     background: var(--orange);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Syne', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 800;
     font-size: 15px;
     flex-shrink: 0;
@@ -401,7 +442,7 @@
   }
 
   .step-body h3 {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 7px;
@@ -420,7 +461,7 @@
     padding: 22px 28px;
     background: var(--orange);
     border-radius: 10px;
-    font-family: 'Syne', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 16px;
     font-weight: 700;
     text-align: center;
@@ -493,11 +534,35 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     color: rgba(255,255,255,0.38);
-    margin-bottom: 18px;
+    margin-bottom: 10px;
+  }
+
+  /* Preço riscado */
+  .price-original {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.35);
+    text-decoration: line-through;
+    margin-bottom: 4px;
+  }
+
+  .price-discount-tag {
+    display: inline-block;
+    background: rgba(255,95,0,0.18);
+    border: 1px solid var(--orange-border);
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: 12px;
   }
 
   .price-value {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 64px;
     font-weight: 800;
     letter-spacing: -3px;
@@ -548,7 +613,7 @@
     display: block;
     background: var(--orange);
     color: var(--white);
-    font-family: 'Syne', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 15px;
     padding: 17px;
@@ -629,9 +694,16 @@
   }
 
   /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 110px 24px 70px;
+    }
+    .hero-image-wrap { display: none; }
+  }
+
   @media (max-width: 800px) {
     nav { padding: 16px 24px; }
-    .hero { padding: 110px 24px 70px; }
     .section, .section-full { padding: 70px 24px; }
     .problem-grid { grid-template-columns: 1fr; }
     .symptoms-grid { grid-template-columns: 1fr; }
@@ -654,21 +726,32 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-glow"></div>
-  <p class="hero-eyebrow">Diagnóstico Financeiro para E-commerce</p>
-  <h1>Você vende.<br>Mas o dinheiro<br><em>não sobra.</em></h1>
-  <p class="hero-sub">A maioria dos e-commerces fatura bem e perde dinheiro em silêncio, com taxas, frete, anúncios e falta de controle. Em até 7 dias você descobre o que está acontecendo.</p>
-  
 
-  <div class="hero-actions">
-    <a href="#diagnostico" class="btn-primary">Quero descobrir meu lucro real</a>
-    <a href="#como-funciona" class="btn-ghost">Ver como funciona ↓</a>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Diagnóstico Financeiro para E-commerce</p>
+    <h1>Você vende.<br>Mas o dinheiro<br><em>não sobra.</em></h1>
+    <p class="hero-sub">A maioria dos e-commerces fatura bem e perde dinheiro em silêncio, com taxas, frete, anúncios e falta de controle. Em até 7 dias você descobre o que está acontecendo.</p>
+
+    <div class="hero-actions">
+      <a href="#diagnostico" class="btn-primary">Quero descobrir meu lucro real</a>
+      <a href="#como-funciona" class="btn-ghost">Ver como funciona ↓</a>
+    </div>
+
+    <div class="hero-badges">
+      <span class="badge">A partir de R$ 380</span>
+      <span class="badge">100% online</span>
+      <span class="badge">Resultado em até 7 dias</span>
+      <span class="badge">Sem planilha</span>
+    </div>
   </div>
 
-  <div class="hero-badges">
-    <span class="badge">A partir de R$ 497</span>
-    <span class="badge">100% online</span>
-    <span class="badge">Resultado em até 7 dias</span>
-    <span class="badge">Sem planilha</span>
+  <!-- IMAGEM HERO -->
+  <div class="hero-image-wrap">
+    <img src="images/pic10.jpg" alt="Análise financeira profissional" />
+    <div class="hero-image-tag">
+      <strong>+clareza</strong>
+      <span>nos seus números</span>
+    </div>
   </div>
 </section>
 
@@ -705,35 +788,17 @@
       <h2>Sua loja está vazando<br>dinheiro se você já <em>sentiu isso:</em></h2>
 
       <div class="symptoms-grid">
-        <div class="symptom">
-          <div class="s-dot"></div>
-          <p>Você vende, mas o dinheiro nunca sobra</p>
-        </div>
-        <div class="symptom">
-          <div class="s-dot"></div>
-          <p>Não sabe se está lucrando ou só girando caixa</p>
-        </div>
-        <div class="symptom">
-          <div class="s-dot"></div>
-          <p>Quanto mais vende, mais confuso fica</p>
-        </div>
-        <div class="symptom">
-          <div class="s-dot"></div>
-          <p>Já pensou: "estou trabalhando para nada?"</p>
-        </div>
-        <div class="symptom">
-          <div class="s-dot"></div>
-          <p>Investe em anúncios sem saber o retorno real</p>
-        </div>
-        <div class="symptom">
-          <div class="s-dot"></div>
-          <p>Não sabe qual produto realmente dá lucro</p>
-        </div>
+        <div class="symptom"><div class="s-dot"></div><p>Você vende, mas o dinheiro nunca sobra</p></div>
+        <div class="symptom"><div class="s-dot"></div><p>Não sabe se está lucrando ou só girando caixa</p></div>
+        <div class="symptom"><div class="s-dot"></div><p>Quanto mais vende, mais confuso fica</p></div>
+        <div class="symptom"><div class="s-dot"></div><p>Já pensou: "estou trabalhando para nada?"</p></div>
+        <div class="symptom"><div class="s-dot"></div><p>Investe em anúncios sem saber o retorno real</p></div>
+        <div class="symptom"><div class="s-dot"></div><p>Não sabe qual produto realmente dá lucro</p></div>
       </div>
 
       <div class="symptoms-callout">
         <strong>Isso não é falta de esforço. É falta de clareza financeira.</strong>
-        <p> Na correria do dia a dia, nem sempre sobra tempo para olhar os números com atenção, e tudo bem. A FinSpots faz isso por você.</p>
+        <p>Na correria do dia a dia, nem sempre sobra tempo para olhar os números com atenção, e tudo bem. A FinSpots faz isso por você.</p>
       </div>
     </div>
   </div>
@@ -756,7 +821,7 @@
     <div class="step">
       <div class="step-num">02</div>
       <div class="step-body">
-        <h3>Nos analisamos tudo</h3>
+        <h3>Nós analisamos tudo</h3>
         <p>Faturamento, custos, produtos, canais, taxas e frete. Uma análise completa da sua operação, sem deixar nada de fora.</p>
       </div>
     </div>
@@ -781,7 +846,6 @@
   </div>
 </section>
 
-
 <!-- OFERTA -->
 <div class="section-full offer-section" id="diagnostico">
   <div class="section-inner">
@@ -803,7 +867,9 @@
 
       <div class="price-card">
         <p class="price-label">Investimento único</p>
-        <div class="price-value"><sup>R$</sup>497</div>
+        <p class="price-original">R$ 500</p>
+        <div class="price-discount-tag">Oferta de lançamento</div>
+        <div class="price-value"><sup>R$</sup>380</div>
         <p class="price-sub">pagamento único</p>
 
         <div class="price-divider"></div>
@@ -833,7 +899,7 @@
     <a href="https://wa.me/5562996677168?text=Ol%C3%A1%2C+quero+o+diagn%C3%B3stico+financeiro" class="btn-primary" target="_blank">
       Quero o diagnóstico financeiro →
     </a>
-    <p class="closing-note"> Resposta rápida · 100% online</p>
+    <p class="closing-note">Resposta rápida · 100% online</p>
   </div>
 </section>
 
